@@ -11,7 +11,8 @@ export default function LoginForm() {
     const [password,setPassword]=useState(null);
     const [type,setType]=useState('password');
     const {isLogIn,login}=useLogin();
-
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
     const navigate=useNavigate();
 
     function handleSubmit(e){
@@ -20,6 +21,13 @@ export default function LoginForm() {
             toast.error('Please Fill Form Correctly');
             return;
         };
+
+        if(!emailRegex.test(email)){
+          return toast.error('Please Enter email in correct format');
+        }
+        if(password.length < 8){
+          return toast.error('Password requires minimum 8 characters');
+        }
         login({email,password});
     }
 

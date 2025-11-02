@@ -6,24 +6,33 @@ import toast from 'react-hot-toast';
 import { useSignUp } from '../feature/users/useSignUpUser';
 import { useCreateAdmin } from '../feature/users/useCreateAdmin';
 
-export default function SignUpForm({adminAccess=false}) {
-    const [email,setEmail]=useState(null);
-    const [name,setName]=useState(null);
-    const [password,setPassword]=useState(null);
-    const [confirmPwd,setConfirmPwd]=useState(null);
-    const [type,setType]=useState('password');
-    const [confType,setConfType]=useState('password');
-    const {isSignUp,signUp}=useSignUp();
-    const {isCreating,adminCreate}=useCreateAdmin();
 
-    function handleSubmit(e){
-        e.preventDefault();
+export default function SignUpForm({adminAccess=false}) {
+  const [email,setEmail]=useState(null);
+  const [name,setName]=useState(null);
+  const [password,setPassword]=useState(null);
+  const [confirmPwd,setConfirmPwd]=useState(null);
+  const [type,setType]=useState('password');
+  const [confType,setConfType]=useState('password');
+  const {isSignUp,signUp}=useSignUp();
+  const {isCreating,adminCreate}=useCreateAdmin();
+  
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  
+  function handleSubmit(e){
+    e.preventDefault();
         if(!email || !name || !password || !confirmPwd){
             return toast.error('Please Fill Form Correctly');
         }
         if(confirmPwd.trim()!==password.trim()){
             return toast.error('Please Enter Confirm Password Correctly');
         };
+        if(!emailRegex.test(email)){
+          return toast.error('Please Enter email in correct format');
+        }
+        if(password.length < 8){
+          return toast.error('Password requires minimum 8 characters');
+        }
         adminAccess ? adminCreate({name,email,password,passwordConfirm:confirmPwd,role:'admin'},{
           onSuccess:()=>{
             setName("");
