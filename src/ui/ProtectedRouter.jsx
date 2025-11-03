@@ -16,7 +16,7 @@ export default function ProtectedRoute({ children }) {
 
   // if no user or token expired
   if (isError || !authUser) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/home" replace />;
   }
 
   // ✅ allow only admin users
