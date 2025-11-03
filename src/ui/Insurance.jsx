@@ -18,7 +18,7 @@ export default function Insurance() {
         <Heading>Insurance Partners</Heading>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-6 pr-6 pl-6">
             {insuranceData.map((item)=>(
-                <Card className="hover:shadow-lg transition-shadow duration-300 !border-none !rounded-none">
+                <Card key={item?._id} className="hover:shadow-lg transition-shadow duration-300 !border-none !rounded-none">
                 <CardMedia
                   component="img"
                   image={item.Image}
