@@ -17,6 +17,7 @@ import ExpertiesFormPage from './Page/ExpertiesFormPage';
 import FaqFormPage from './Page/FaqFormPage';
 import { Toaster } from 'react-hot-toast';
 import CreateAdminPage from './Page/CreateAdminPage';
+import ProtectedRoute from './ui/ProtectedRouter';
 
 // here we create a query config
 const queryClient=new QueryClient({
@@ -38,7 +39,11 @@ function App() {
         <Route path='/home' element={<HomePage/>}/>
       </Route>
 
-      <Route element={<CrudLayout/>}>
+      <Route element={
+        <ProtectedRoute>
+          <CrudLayout/>
+        </ProtectedRoute>
+      }>
         <Route index element={<Navigate replace to='/banners'></Navigate>}></Route>
         <Route path='/banners' element={<BannerFormPage/>}></Route>
         <Route path='/keyDifferenciators' element={<KeyDifferenciatorsFormPage/>}></Route>
