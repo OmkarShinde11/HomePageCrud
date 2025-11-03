@@ -14,7 +14,7 @@ export default  async function getInsurance(){
 export async function deleteInsurance(id){
     try{
         const response = await axiosInstance.delete(`${API_URL}/insurance/${id}`);
-        return data;
+        return response;
     }catch(err){
         console.log(err);
         throw err
