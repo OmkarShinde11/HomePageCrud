@@ -18,6 +18,7 @@ import FaqFormPage from './Page/FaqFormPage';
 import { Toaster } from 'react-hot-toast';
 import CreateAdminPage from './Page/CreateAdminPage';
 import ProtectedRoute from './ui/ProtectedRouter';
+import PageNotFound from './Page/PageNotFound';
 
 // here we create a query config
 const queryClient=new QueryClient({
@@ -56,6 +57,8 @@ function App() {
       </Route>
       <Route path='/login' element={<LoginPage/>}></Route>
       <Route path='/signUp' element={<SignUpPage/>}></Route>
+
+      <Route path='*' element={<PageNotFound/>}></Route>
     </Routes>
     </BrowserRouter>
     <Toaster position='top-center' gutter={12} containerStyle={{marginTop:'50px',zIndex: 999999}} toastOptions={{
