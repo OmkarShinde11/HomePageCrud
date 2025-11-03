@@ -16,8 +16,8 @@ export function useLogin() {
       toast.success('User login Successfully');
       navigate('/home')
     },
-    onError:()=>{
-        toast.error('Error while log-in the user');
+    onError:(err)=>{
+        toast.error(err?.response?.data?.message || 'Error while log-in the user');
     }
   });
 

@@ -20,7 +20,7 @@ export function useCreateAdmin() {
         if(err?.response?.data?.error?.name==='TokenExpiredError' || err?.response?.data?.error?.name==='JsonWebTokenError' || err?.response?.data?.message===`You're not login please login then try`){
             handleTokenExpiry();
         }else{
-            toast.error('There is problem while creating the new admin users');
+            toast.error(err?.response?.data?.message || 'There is problem while creating the new admin users');
         }
     }
   });

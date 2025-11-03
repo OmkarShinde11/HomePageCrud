@@ -16,6 +16,9 @@ export function useSignUp() {
       toast.success('User Sign Up Successfully');
       navigate('/home')
     },
+    onError:(err)=>{
+      toast.error(err?.response?.data?.message || 'Error while sign up the user')
+    }
   });
 
   return {isSignUp,signUp};
